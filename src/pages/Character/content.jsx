@@ -129,9 +129,9 @@ const Content = ({ data, onFlag }) => {
                 </div>
                 
             </div>
-            <div className='p-4 w-full flex flex-col item-center space-x-2 text-white'>
+            <div className='p-4 w-full flex flex-col justify-center items-center space-x-2 text-white'>
                 <p className="text-2xl">Assign Location</p>
-                <div className='py-2 w-full flex flex-row item-center space-x-2 text-white '>
+                <div className='py-2 w-full flex flex-row item-center justify-center space-x-2 text-white '>
                     <button
                         className="px-2 bg-blue-500 rounded-full text-center text-xs cursor-pointer"
                         onClick={handleToggle}
@@ -148,7 +148,7 @@ const Content = ({ data, onFlag }) => {
                     )}
                 </div>
             </div>
-            <div className={`${show ? '':'hidden'} px-4 text-white`}>
+            <div className={`${show ? '':'hidden'} px-4 text-white flex flex-col justify-center items-center` }>
                     <form className="px-8 pb-8 mb-4" >
                     <div className="mb-4">
                         <label className="block text-white text-sm font-bold mb-2" htmlFor="username">
@@ -173,7 +173,7 @@ const Content = ({ data, onFlag }) => {
                         </div>
                     </form>
             </div>
-            <div className={`${showw ? '' : 'hidden'} px-4 text-white`}>
+            <div className={`${showw ? '' : 'hidden'} px-4 text-white flex flex-col justify-center items-center`}>
                 <div className="w-40 mb-3 grid">
                     <select
                         className="p-2 rounded-lg appearance-none row-start-1 col-start-1 bg-slate-50 dark:bg-slate-800 "
