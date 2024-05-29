@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useCharacters from '../../hooks/useCharacters'
+import Modal from "../../components/modal";
 
 const classCreate = (flag) => {
     const anchor = [
@@ -24,8 +25,10 @@ const shoLocation = (array, search) => {
     return show
 }
 
-const Content = ({ data }) => {
+const Content = ({ data, onFlag }) => {
     const [input, setInput] = useState('');
+    const [modalAdd, setModalAdd] = useState(false);
+    const [modalChange, setModalChange] = useState(false);
     const [select, setSelect] = useState(0);
     const [show, setShow] = useState(false);
     const [showw, setShoww] = useState(false);
@@ -51,13 +54,15 @@ const Content = ({ data }) => {
                 const ids = (count?.length > 0) ? count?.length+1 : 1
                 localStorage.setItem('locationEdit',JSON.stringify([...dataCTX.locationList,{ id: ids, name: input }]))
                 dataCTX.setAddLocation({ id: ids, name: input })
-                setError({isError: false, massage: 'Success'});
-                
+                setError({ isError: false, massage: 'Success' });
+                setModalAdd(true);
             } else {
-                setError({isError: true, massage: 'Location Exist'});
+                setError({ isError: true, massage: 'Location Exist' });
+                setModalAdd(true);
             }
         } else {
-            setError({isError: true, massage: 'Fill this form'});
+            setError({ isError: true, massage: 'Fill this form' });
+            setModalAdd(true);
         }
         
     }
@@ -73,15 +78,20 @@ const Content = ({ data }) => {
                 }
             });
             localStorage.setItem('character',JSON.stringify(dataCTX.characterList))
-            setErrorr({isError: false, massage: 'Success'});
+            setErrorr({ isError: false, massage: 'Success' });
+            setModalChange(true);
+            onFlag()
         } else {
-            setErrorr({isError: true, massage: 'Fill this form'});
+            setErrorr({ isError: true, massage: 'Fill this form' });
+            setModalChange(true);
         }
     }
 
     
     return (
         <div className=''>
+            <Modal open={modalAdd} setOpen={setModalAdd} data={error} />
+            <Modal open={modalChange} setOpen={setModalChange} data={errorr} />
             <div className='flex flex-col justify-center items-center mt-8'>
                 <div
                         className='h-80 w-80 rounded-full bg-cover bg-center bg-no-repeat' 
@@ -150,7 +160,7 @@ const Content = ({ data }) => {
                             onChange={(e) => setInput(e.target.value)}
                             required
                         />
-                        {error && <p className={`${error ? 'text-red-500': 'text-emerald-500'} text-xs italic`}>{error.massage}</p>}
+                        {/* {error && <p className={`${error ? 'text-red-500': 'text-emerald-500'} text-xs italic`}>{error.massage}</p>} */}
                         </div>
                         <div className="flex items-center justify-between">
                         <button
@@ -181,7 +191,7 @@ const Content = ({ data }) => {
                     
                     </select>
                 </div>
-                {errorr && <p className={`${errorr ? 'text-red-500': 'text-emerald-500'} text-xs italic`}>{errorr.massage}</p>}
+                {/* {errorr && <p className={`${errorr ? 'text-red-500': 'text-emerald-500'} text-xs italic`}>{errorr.massage}</p>} */}
                 <button
                     className="bg-blue-500 text-xs hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     type="button"

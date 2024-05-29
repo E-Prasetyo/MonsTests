@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import useCharacters from './hooks/useCharacters';
 import LocationList from './pages/LocationList';
 import Location from './pages/Location';
+import NotFound from './pages/NotFound';
 
 function App() {
   const dataCTX = useCharacters();
@@ -41,6 +42,7 @@ function App() {
           <Route path="location" element={<LocationList />} />
           <Route path="location/:locationId" element={<Location/>} />
         </Route>
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </>
   )

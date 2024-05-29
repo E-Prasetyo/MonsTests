@@ -25,7 +25,11 @@ const Location = () => {
                   </div>
               )
           })}
-          {dataCTX.locationList.length <= 0 && <p>data tidak ditemukan</p>}
+        {dataCTX.locationList.length <= 0 && (
+            <p className='py-10 text-center text-white bg-slate-500 capitalize'>
+                data tidak ditemukan
+            </p>
+        )}
     </div>
   )
 }
