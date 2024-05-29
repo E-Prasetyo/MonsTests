@@ -11,9 +11,8 @@ const Character = () => {
 
     useEffect(() => {
         const dataChar = JSON.parse(localStorage.getItem("character"))
-        const dataLoc = JSON.parse(localStorage.getItem("locationEdit"))
         setData(dataChar.find(value => value.id == characterId));
-        setDataOption(dataLoc)
+        setDataOption(dataCTX.locationList)
     }, [dataCTX.locationList, dataCTX.characterList, characterId]);
 
   return (
