@@ -10,7 +10,7 @@ const Character = () => {
     const [dataOption, setDataOption] = useState([]);
 
     useEffect(() => {
-        const dataChar = dataCTX.characterList;
+        const dataChar = localStorage.getItem("character")
         setData(dataChar.find(value => value.id == characterId));
         setDataOption(dataCTX.locationList)
     }, [dataCTX.locationList, dataCTX.characterList, characterId]);
